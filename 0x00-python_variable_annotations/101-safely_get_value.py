@@ -3,12 +3,12 @@
 from typing import Mapping, Any, Union, TypeVar
 
 
-TV = TypeVar('TV')
+T = TypeVar('T')
 
 
 def safely_get_value(dct: Mapping, key: Any,
-                     default: Union[TV, None] = None
-                     ) -> Union[Any, TV]:
+                     default: Union[T, None] = None
+                     ) -> Union[Any, T]:
 
     if key in dct:
         return dct[key]
