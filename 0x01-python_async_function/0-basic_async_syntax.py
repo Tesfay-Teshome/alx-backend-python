@@ -2,7 +2,7 @@
 
 import asyncio
 import random
-""" The basics of async """
+
 
 async def wait_random(max_delay: int = 10) -> float:
     
