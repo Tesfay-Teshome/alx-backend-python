@@ -10,7 +10,7 @@ from unittest.mock import patch, PropertyMock, Mock
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """ Class for Testing Github Org Client """
+    """ Class for Test Github Org Client """
 
     @parameterized.expand([
         ('google'),
@@ -18,13 +18,13 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     @patch('client.get_json')
     def test_org(self, input, mock):
-        """Test that GithubOrgClient.org returns the correct value"""
+        """Test the GithubOrgClient.org and returns the correct value"""
         test_class = GithubOrgClient(input)
         test_class.org()
         mock.assert_called_once_with(f'https://api.github.com/orgs/{input}')
 
     def test_public_repos_url(self):
-        """ Test that the result of _public_repos_url is the expected one
+        """ Test the result of _public_repos_url is the expected one
         based on the mocked payload
         """
         with patch('client.GithubOrgClient.org',
@@ -38,8 +38,8 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch('client.get_json')
     def test_public_repos(self, mock_json):
         """
-        Test that the list of repos is what you expect from the chosen payload.
-        Test that the mocked property and the mocked get_json was called once.
+        Test list of repos is what you expect from the chosen payload.
+        Test mocked property and the mocked get_json was called once.
         """
         json_payload = [{"name": "Google"}, {"name": "Twitter"}]
         mock_json.return_value = json_payload
@@ -77,12 +77,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """A class method called before tests in an individual class are run"""
-        # def my_side_effect(url):
-        #     """ Side Effect function for test """
-        #     test_url = "https://api.github.com/orgs/google"
-        #     if url == test_url:
-        #         return cls.org_payload
-        #     return cls.repos_payload
 
         config = {'return_value.json.side_effect':
                   [
